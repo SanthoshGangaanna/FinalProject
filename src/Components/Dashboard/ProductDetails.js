@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import {Typography, Box, Grid, Card, CardMedia, CardContent} from '@mui/material';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import "./ProductDetails.css"
 
 export default function ProductDetails() {
     // const products = useSelector((state) => state.allProducts.products);
@@ -12,7 +15,6 @@ export default function ProductDetails() {
     const {id: productId = ''} = params || {}
 
     const [products, setProducts] = useState([])
-    console.log("Hello World",products)
   
     const fetchProducts = async () => {
       try {
@@ -43,7 +45,20 @@ export default function ProductDetails() {
   return (
     <>
     <Header/>
-    {title}
+    <div className='OuterOuterContainer'>
+    <div className='OuterContainer'>
+    <img className='ImageContainer' src={image} alt={title} />
+    <div className='CardContainer'spacing={10}>
+        <Typography variant='H1' className='TitleStyle' >{title}</Typography>
+        <Typography variant="H1">{description}</Typography>
+        <div><Typography variant='H4'style={{textDecoration:"none", 
+        fontSize:"large", padding:"10px", display: 'flex',
+        justifyContent: 'center', alignItems: 'center'}}><AttachMoneyIcon/>{price}</Typography></div>
+  
+     </div>
+     </div>
+     </div>
+
     </>
   )
 }

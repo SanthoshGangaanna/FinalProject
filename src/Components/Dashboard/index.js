@@ -20,7 +20,7 @@ export default function Dashboard() {
         const response = await axios.get(`https://fakestoreapi.com/products`);
         // dispatch(setProducts(response.data));
         setProducts(response.data)
-        console.log(response, "Heello")
+
       } catch (error) {
         console.error("Error fetching products: ", error);
       }

@@ -1,6 +1,27 @@
 .HeaderContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px;
+  justify-content: space-around;
+  padding-bottom: 25px;
+}
+
+.Split1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Split1Comps {
+  padding-left: 200px;
+}
+
+.Split2{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.Split2Comps{
+  padding-right: 30px;
 }

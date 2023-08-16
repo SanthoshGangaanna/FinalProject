@@ -1,0 +1,40 @@
+.OuterOuterContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.OuterContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 600px;
+}
+
+.ImageContainer{
+    width: 400px;
+    height: 400px;
+}
+
+.CardContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.TitleStyle{
+    font-size: 20px;
+    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif;
+    padding-bottom: 20px;
+}
+
+.DescriptionStyle{
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
