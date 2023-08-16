@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Dashboard from './Components/Dashboard';
-import ProductDetails from './Components/Dashboard/ProductDetails';
+import Dashboard from './Components/Dashboard/Index/index';
+import ProductDetails from './Components/Dashboard/Product Details/ProductDetails';
 
 
 

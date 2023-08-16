@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Header from '../../Header Components/Header'
+import Header from '../../../HeaderComponents/Header'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import {Typography, Box, Grid, Card, CardMedia, CardContent} from '@mui/material';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import "./ProductDetails.css"
+import GradeIcon from '@mui/icons-material/Grade';
 
 export default function ProductDetails() {
     // const products = useSelector((state) => state.allProducts.products);
@@ -21,7 +22,6 @@ export default function ProductDetails() {
         const response = await axios.get(`https://fakestoreapi.com/products/${productId}`);
         // dispatch(setProducts(response.data));
         setProducts(response.data)
-        console.log(response, "Heello")
       } catch (error) {
         console.error("Error fetching products: ", error);
       }
@@ -53,7 +53,10 @@ export default function ProductDetails() {
         <Typography variant="H1">{description}</Typography>
         <div><Typography variant='H4'style={{textDecoration:"none", 
         fontSize:"large", padding:"10px", display: 'flex',
-        justifyContent: 'center', alignItems: 'center'}}><AttachMoneyIcon/>{price}</Typography></div>
+        justifyContent: 'center', alignItems: 'center'}}>Price:<AttachMoneyIcon/>{price}</Typography></div>
+        <div><Typography variant='H4'style={{textDecoration:"none", 
+        fontSize:"large", padding:"10px", display: 'flex',
+        justifyContent: 'center', alignItems: 'center'}}>Rating:{rate}<GradeIcon/></Typography></div>
   
      </div>
      </div>
