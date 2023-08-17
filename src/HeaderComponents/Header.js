@@ -8,14 +8,21 @@ import Cart from './Cart/Cart';
 import Logo from './Logo/Logo'
 import { Link } from 'react-router-dom';
 
-export default function Header() {
+export default function Header(props) {
+  const { setProducts = () => "", setSearch = () => '' } = props || {}
+  
+  // const handleOnSearch = (value) => {
+  //   setSearch(value);
+  // }
+
+  // const searchBarProps = {setSearch: setSearch}
   return (
     <div className='HeaderContainer'>
       <div className='Split1'>
         <div className='logoContainer'><Link to="/"><Logo /></Link></div >
         <div className='Split1Comps'><Menu /></div>
       </div>
-      <Searchbar/>
+      <Searchbar setSearch={setSearch} />
       <div className='Split2' spacing={5}>
         <div className='Split2Comps'><Signup /></div>
         <div className='Split2Comps'><Login/></div>

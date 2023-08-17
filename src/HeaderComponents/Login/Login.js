@@ -47,7 +47,7 @@ const Login = () => {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: 400,
-            bgcolor: 'background.paper',
+            backgroundColor: 'grey',
             boxShadow: 24,
             p: 4,
           }}

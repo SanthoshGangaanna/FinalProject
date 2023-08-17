@@ -13,6 +13,7 @@ function App() {
 
       <Route path='/' element={<Dashboard/>} />
       <Route path='/products/:id' element={<ProductDetails/>} />
+          
       
     </Routes>
     </BrowserRouter>

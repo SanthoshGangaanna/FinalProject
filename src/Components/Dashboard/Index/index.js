@@ -15,9 +15,11 @@ export default function Dashboard() {
 
   const [products, setProducts] = useState([])
   const [rating, setRating] = useState();
-    console.log("Hello World",products)
+  const [search, setSearch] = useState('')
+    
   
-    const fetchProducts = async () => {
+  const fetchProducts = async (props) => {
+      const {search = ''} = props || {} //
       try {
         const response = await axios.get(`https://fakestoreapi.com/products`);
         // dispatch(setProducts(response.data));
@@ -31,16 +33,48 @@ export default function Dashboard() {
       fetchProducts();
     }, []);
   
+  useEffect(() => {
+    if (search !== '') {
+        const filteredProducts = []; 
+        for (const product of products) {
+            if (product.title.toLowerCase().includes(search.toLowerCase())) {
+                filteredProducts.push(product);
+            }
+        }
+        setProducts(filteredProducts); 
+    } else {
+        fetchProducts();
+    }
+  }, [search]);
+  
+  //   useEffect(() => {
+//     if (search !== '') {
+//       // const fetchProductsProps = {search: search}
+//       // fetchProducts({search});
+//       const filteredResults = search ? products?.filter(product =>
+//             product?.title?.toLowerCase().includes(search?.toLowerCase())
+//           ) : products;
+//         setProducts(filteredResults)
+//     } else {
+//       fetchProducts();
+//     }
+// }, [search])
+  
+  const headerProps = {
+    setProducts: setProducts,
+    setSearch: setSearch
+  }
+  
   return (
     <>
-    <Header/>
+      <Header {...headerProps} />
      <Grid container spacing={4}>
     {products?.length > 0 && products?.map((item, index) => {
       const { image = '', title = '', description = '', id = '', price = "", rating = {} } = item || {}
       const {rate='', count=''} = rating || {}
       return( 
        
-          <Grid item xs={3} >        
+          <Grid key={index} item xs={3} >        
           <Box  sx={{width:300, height:300}}>
            <Link style={{textDecoration:"none"}} to={`products/${id}`}>
         <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%', 

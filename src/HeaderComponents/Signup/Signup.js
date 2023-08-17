@@ -41,7 +41,6 @@ const Signup = () => {
       password: !password || password.length < 6,
     };
 
-    // Check for errors
     if (newErrors.name || newErrors.email || newErrors.password) {
       hasErrors = true;
       setErrors(newErrors);
@@ -67,7 +66,7 @@ const Signup = () => {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: 400,
-            bgcolor: 'background.paper',
+            backgroundColor: 'background.paper',
             boxShadow: 24,
             p: 4,
           }}
