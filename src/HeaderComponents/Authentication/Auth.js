@@ -64,29 +64,19 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    
-    debugger
-    fetch('https://fakestoreapi.com/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({
-        username: "vengatesh@codenatives.com",
-        password: 'Qwerty@123'
-      })
-    }).then(res=>res.json()).then(json=>console.log(json))
-    
-    // const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
 
-    // if (
-    //   storedUserData &&
-    //   storedUserData.email === email &&
-    //   storedUserData.password === password
-    // ) {
-    //   setError(false);
-    //   setLoggedIn(true);
-    //   setUserName(storedUserData.name);
-    // } else {
-    //   setError(true);
-    // }
+    if (
+      storedUserData &&
+      storedUserData.email === email &&
+      storedUserData.password === password
+    ) {
+      setError(false);
+      setLoggedIn(true);
+      setUserName(storedUserData.name);
+    } else {
+      setError(true);
+    }
   };
 
   const handleLogout = () => {

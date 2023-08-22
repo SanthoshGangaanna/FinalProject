@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, CardContent, CardHeader, CardMedia, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardHeader, Stack,CardMedia, TextField, Typography } from '@mui/material';
 import Header from '../../../HeaderComponents/Header';
 import './Addtocart.css'
+import DeleteIcon from '@mui/icons-material/Delete';
+
 const AddToCart = () => {
   const [products, setProducts] = useState([]);
   const [cartData, setCartData] = useState([]);
+   const [quantity, setQuantity] = useState();
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -123,47 +126,66 @@ return (
             const product = products.find(({ id }) => id === cartItem.productId);
             if (product) {
               const productTotal = getProductTotal(product.price, cartItem.quantity);
-            return (
-              <Card key={product.id} style={{ marginBottom: '10px' }}>
-                <CardHeader title={product.title} />
-                <CardMedia
+              return (
+                <div >
+              <Card key={product.id} className='CardOuter'>
+                    <CardHeader title={product.title} />
+                    <div className='innerContent'>
+                <CardMedia 
                   component="img"
                   src={product.image}
                   alt={product.title}
-                  style={{ maxWidth: '100px' }}
-                />
+                        style={{ width: 300, height: 300 }}
+                        sx={{objectFit: 'contain'}}
+                      />
                 <CardContent>
-                  <Typography variant="body1">Price: ${product.price}</Typography>
-                  <Typography variant="body1">Total: ${productTotal}</Typography>
+                  <Typography variant="body1" style={{paddingBottom:10}}>Price: ${product.price}</Typography>
+                  <Typography variant="body1" style={{paddingBottom:10}}>Total: ${productTotal}</Typography>
                   <div className='QtyStyle'>
-                  <Button
+                  <Button className='remove'
                     onClick={() =>
                       handleUpdateQuantity(cartItem.productId, cartItem.quantity + 1)
                     }
-                    variant="contained"
+                            variant="contained"
+                            style={{width:20, height:30}}
                   >
                     +
                   </Button>
-                  <Typography variant="body1">Qty: {cartItem.quantity}</Typography>
+                          <Typography
+  variant="body1"
+  style={{
+    width: 20,
+    height: 30,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center", 
+  }}
+>
+  {cartItem.quantity}
+</Typography>
+
                   <Button
                     onClick={() =>
                       handleUpdateQuantity(cartItem.productId, cartItem.quantity - 1)
                     }
                     disabled={cartItem.quantity === 1}
-                    variant="contained"
+                            variant="contained"
+                           style={{width:20, height:30}}
                   >
                     -
                     </Button>
                     </div>
                   <Button
-                    onClick={() => handleRemoveProduct(cartItem.productId)}
+                          onClick={() => handleRemoveProduct(cartItem.productId)}
                     variant="contained"
-                    color="error"
+                          color="error"
                   >
-                    Remove
+                    <DeleteIcon/>
                   </Button>
-                </CardContent>
+                        </CardContent>
+                      </div>
               </Card>
+                </div>
             )
             }
             return null;
@@ -172,7 +194,7 @@ return (
       </div>
       {cartData.length > 0 && (
         <div>
-          <Typography variant="h4" style={{ color: 'red' }}>
+          <Typography variant="h4" style={{ color: 'black', paddingTop:25}}>
             Grand Total: ${calculateGrandTotal()}
           </Typography>
         </div>

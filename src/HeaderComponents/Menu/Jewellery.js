@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Header from '../../../HeaderComponents/Header'
+import Header from '../Header';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -9,7 +9,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import GradeIcon from '@mui/icons-material/Grade';
 
 
-export default function Dashboard() {
+export default function Jewelery() {
     // const products = useSelector((state) => state.allProducts.products);
     // const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ export default function Dashboard() {
   const fetchProducts = async (props) => {
       const {search = ''} = props || {} //
       try {
-        const response = await axios.get(`https://fakestoreapi.com/products`);
+        const response = await axios.get(`https://fakestoreapi.com/products/category/jewelery`);
         // dispatch(setProducts(response.data));
         setProducts(response.data)
 
@@ -47,18 +47,6 @@ export default function Dashboard() {
     }
   }, [search]);
   
-  //   useEffect(() => {
-//     if (search !== '') {
-//       // const fetchProductsProps = {search: search}
-//       // fetchProducts({search});
-//       const filteredResults = search ? products?.filter(product =>
-//             product?.title?.toLowerCase().includes(search?.toLowerCase())
-//           ) : products;
-//         setProducts(filteredResults)
-//     } else {
-//       fetchProducts();
-//     }
-// }, [search])
   
   const headerProps = {
     setProducts: setProducts,

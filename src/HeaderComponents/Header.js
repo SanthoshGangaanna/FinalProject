@@ -21,7 +21,7 @@ export default function Header(props) {
     <div className='HeaderContainer'>
       <div className='Split1'>
         <div className='logoContainer'><Link to="/"><Logo /></Link></div >
-        {/* <div className='Split1Comps'><Menu /></div> */}
+        <div className='Split1Comps'><Menu /></div>
       </div>
       <Searchbar setSearch={setSearch} />
       <div className='Split2' spacing={5}>
