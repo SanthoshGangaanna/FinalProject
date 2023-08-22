@@ -88,14 +88,14 @@ export default function Dashboard() {
       <CardContent>
         {/* <img src={image} style={{width:100, height:100}}alt={title} /> */}
         <Typography variant='H4' style={{ textDecoration: "none", fontSize: "large" }}>{title}</Typography>
-        <div className=''>    
-            <div>
+        <Grid item>    
+            <Grid item>
                 <Typography variant='H4' style={{textDecoration: "none", fontSize:"large", paddingTop:"10px", display: 'flex',
-        justifyContent: 'center', alignItems: 'center'}}><AttachMoneyIcon/>{price}</Typography></div>
+        justifyContent: 'center', alignItems: 'center'}}><AttachMoneyIcon/>{price}</Typography></Grid>
             {/* <Typography variant="subtitle2">{description}</Typography> */}
-        <div><Typography variant='H4'style={{textDecoration:"none", fontSize:"large", paddingTop:"10px", 
-        display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Rating: {rate}<GradeIcon /></Typography></div>
-        </div>
+        <Grid item><Typography variant='H4'style={{textDecoration:"none", fontSize:"large", paddingTop:"10px", 
+        display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Rating: {rate}<GradeIcon /></Typography></Grid>
+        </Grid>
         </CardContent>
         </Card>
       </Link>

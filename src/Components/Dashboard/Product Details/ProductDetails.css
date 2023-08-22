@@ -22,8 +22,6 @@
 .CardContainer{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 10px;
 }
 
@@ -38,3 +36,10 @@
     font-size: 10px;
     font-family: 'Times New Roman', Times, serif;
 }
+
+.QtyField{
+        display: flex;
+        flex-direction: row;
+        padding-left: 10px;
+}
+

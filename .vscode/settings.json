@@ -101,5 +101,8 @@
   "editor.formatOnPaste": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": false
-  }
+  },
+  "cSpell.ignoreWords": [
+    "Addtocart"
+  ]
 }

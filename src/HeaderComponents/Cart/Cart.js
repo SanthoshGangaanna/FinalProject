@@ -1,9 +1,13 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import React from 'react'
 
-export default function Cart() {
-
+function Cart() {
   return (
-    <div><ShoppingCartIcon /></div>
-  )
+          <Link to="/add-to-cart">
+            <ShoppingCartIcon />
+          </Link>
+  );
 }
+
+export default Cart;

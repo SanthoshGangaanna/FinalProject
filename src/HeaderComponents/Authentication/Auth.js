@@ -1,5 +1,44 @@
 import React, { useState } from 'react';
-import { Button, TextField, Modal, Box, Typography } from '@mui/material';
+import {
+  Button,
+  TextField,
+  Modal,
+  Box,
+  Typography,
+  Menu,
+  MenuItem,
+} from '@mui/material';
+import { json } from 'react-router-dom';
+
+const AuthenticatedUserMenu = ({ name, onLogout }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    onLogout();
+    handleMenuClose();
+  };
+
+  return (
+    <div>
+      <Button onClick={handleMenuOpen}>{`Hello, ${name}`}</Button>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+      </Menu>
+    </div>
+  );
+};
 
 const Login = () => {
   const [open, setOpen] = useState(false);
@@ -7,6 +46,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userName, setUserName] = useState('');
 
   const handleOpen = () => {
     setOpen(true);
@@ -24,31 +64,45 @@ const Login = () => {
   };
 
   const handleLogin = () => {
+    
     debugger
-    fetch('https://fakestoreapi.com/auth/login',{
-            method:'POST',
-            body:JSON.stringify({
-                username: "vengatesh",
-                password: "Qwerty@123"
-            })
-        })
-            .then(res=>res.json())
-            .then(json=>console.log(json))
+    fetch('https://fakestoreapi.com/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: "vengatesh@codenatives.com",
+        password: 'Qwerty@123'
+      })
+    }).then(res=>res.json()).then(json=>console.log(json))
+    
     // const storedUserData = JSON.parse(localStorage.getItem('userData'));
 
-    // if (storedUserData && storedUserData.email === email && storedUserData.password === password) {
+    // if (
+    //   storedUserData &&
+    //   storedUserData.email === email &&
+    //   storedUserData.password === password
+    // ) {
     //   setError(false);
     //   setLoggedIn(true);
+    //   setUserName(storedUserData.name);
     // } else {
     //   setError(true);
     // }
   };
 
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setUserName('');
+  };
+
   return (
     <div>
-      <Button variant="outlined" onClick={handleOpen}>
-        Login
-      </Button>
+      {loggedIn ? (
+        <AuthenticatedUserMenu name={userName} onLogout={handleLogout} />
+      ) : (
+        <Button variant="outlined" onClick={handleOpen}>
+          Login
+        </Button>
+      )}
       <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
@@ -63,11 +117,9 @@ const Login = () => {
           }}
         >
           {loggedIn ? (
-            <div>
-              <Typography variant="body1">
-                Logged in Successfully
-              </Typography>
-            </div>
+            <Typography variant="body1">
+              Logged in Successfully
+            </Typography>
           ) : (
             <div>
               <Typography variant='h4'>Login</Typography>
@@ -79,7 +131,6 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 error={error}
-                helperText={error && 'Invalid email or password'}
               />
               <TextField
                 label="Password"
@@ -90,6 +141,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 error={error}
+                helperText={error && 'Invalid email or password'}
               />
               <Button variant="contained" color="primary" onClick={handleLogin}>
                 Login
@@ -103,3 +155,5 @@ const Login = () => {
 };
 
 export default Login;
+
+
